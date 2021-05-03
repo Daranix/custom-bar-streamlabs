@@ -1,0 +1,66 @@
+{
+    "borderRadiusMultiplier": {
+        "label": "Border Radius Multiplier",
+        "type": "slider",
+        "value": 2,
+        "max": 100,
+        "min": 2,
+        "steps": 1
+    },
+    "borderWidth": {
+        "label": "Border Width Pixels",
+        "type": "slider",
+        "name": "px",
+        "value": 3,
+        "max": 100,
+        "min": 0,
+        "steps": 1
+    },
+    "showCurrency": {
+        "label": "Show currency simbol",
+        "type": "dropdown",
+        "options": {
+            "yes": "Yes",
+            "no": "No"
+        },
+        "value": "yes"
+    },
+    "showPercentage": {
+        "label": "Show percentage on condensed layout",
+        "type": "dropdown",
+        "options": {
+            "yes": "Yes",
+            "no": "No"
+        },
+        "value": "no"
+    },
+    "borderColor": {
+        "label": "Border Color",
+        "type": "colorpicker",
+        "value": "#a559ac"
+    },
+    "barBackgroundColor1": {
+        "label": "Background Color 1",
+        "type": "colorpicker",
+        "value": "#a559ac"
+    },
+    "barBackgroundColor2": {
+        "label": "Background Color 2",
+        "type": "colorpicker",
+        "value": "#b22cff"
+    },
+    "barBackgroundColor3": {
+        "label": "Background Color 3",
+        "type": "colorpicker",
+        "value": "#911c8b"
+    },
+    "barBackgroundColorInterval": {
+        "label": "Background Change Interval Seconds",
+        "type": "slider",
+        "name": "s",
+        "value": 10,
+        "max": 59,
+        "min": 1,
+        "steps": 1
+    }
+}

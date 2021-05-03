@@ -1,0 +1,165 @@
+#wrap {
+  padding: 10px;
+}
+
+/* All html objects will be wrapped in the #wrap div */
+
+:root {
+  --border-width: 3px;
+  --bar-thickness: 64px;
+  --st-font: Lato, sans-serif;
+  --radius-multiplier: 2;
+  --progress-percent: 50%;
+  --progress-content-padding: 10px;
+  --bar-bg-color: gray;
+  --bar-text-color: white;
+  --bar-fill-color: black;
+  --text-color: blue;
+  --border-color: #a559ac;
+  --bar-bg-color-1: #a559ac;
+  --bar-bg-color-2: #b22cff;
+  --bar-bg-color-3: #911c8b;
+  --bar-bg-interval: 10s;
+  /* Relative calcs */
+  --bar-border-radius: calc(
+    var(--border-width) * (var(--radius-multiplier) - 1)
+  );
+}
+
+.progress-box {
+  position: relative;
+  /*
+    display: flex;
+    justify-content: center;
+    align-items: center;*/
+  height: var(--bar-thickness);
+  font-family: var(--st-font);
+
+  /*text-transform: uppercase;*/
+  color: var(--text-color);
+  background: var(--bar-bg-color);
+}
+
+.gradient-border {
+  border-radius: var(--bar-border-radius);
+}
+
+.gradient-border::after {
+  --radius: calc(var(--radius-multiplier) * var(--border-width));
+  position: absolute;
+  content: "";
+  top: calc(-1 * var(--border-width));
+  left: calc(-1 * var(--border-width));
+  z-index: -2;
+  width: calc(100% + var(--border-width) * 2);
+  height: calc(100% + var(--border-width) * 2);
+  /*background: linear-gradient(60deg, #5f86f2, #a65ff2, #f25fd0, #f25f61, #f2cb5f, #abf25f, #5ff281, #5ff2f0);*/
+  /*background: linear-gradient(60deg, #911c8b, #a65ff2, #b22cff, #f25fd0, #a559ac);*/
+  background-color: var(--border-color);
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: var(--radius);
+  /*animation: moveGradient 4s alternate infinite;*/
+}
+
+.progress-text div {
+  flex-grow: 1;
+  padding: 0px var(--progress-content-padding) 0px
+    var(--progress-content-padding);
+}
+
+.progress-text {
+  display: flex;
+  transform-style: preserve-3d;
+  justify-content: center;
+  align-items: center;
+  color: var(--bar-text-color);
+  height: 100%;
+  font-size: calc(var(--bar-thickness) - var(--progress-content-padding));
+}
+
+.progress-text::after {
+  position: absolute;
+  content: "";
+  width: calc(var(--progress-percent) + var(--border-width) - 3px);
+  /*height: calc(100% + var(--border-width) - 3px);*/
+  height: 100%;
+  transform: translateZ(-1px);
+  top: 0;
+  left: 0;
+  background-size: 300% 300%;
+  background-position: 0 50%;
+  border-radius: var(--bar-border-radius);
+  /* background-color: var(--bar-fill-color);*/
+  background: linear-gradient(
+    60deg,
+    #5f86f2,
+    #a65ff2,
+    #f25fd0,
+    #f25f61,
+    #f2cb5f,
+    #abf25f,
+    #5ff281,
+    #5ff2f0
+  );
+  animation: color-change-3x var(--bar-bg-interval) linear infinite alternate
+    both;
+}
+
+.progress-text #goal-current {
+  text-align: center;
+}
+
+.progress-text #goal-total {
+  text-align: right;
+}
+
+.progress-content {
+  width: var(--progress-percent);
+}
+
+.title-standard {
+  color: var(--text-color);
+  font-size: 22px;
+  text-align: center;
+  font-family: var(--st-font);
+}
+
+.bar-footer {
+  display: flex;
+  margin-top: 5px;
+}
+
+.bar-footer div {
+  flex-grow: 1;
+  font-size: 22px;
+  color: var(--text-color);
+  font-family: var(--st-font);
+  text-align: center;
+}
+
+.bar-footer div:first-child {
+  text-align: left;
+}
+
+.bar-footer div:last-child {
+  text-align: right;
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes color-change-3x {
+  0% {
+    background: var(--bar-bg-color-1);
+  }
+  50% {
+    background: var(--bar-bg-color-2);
+  }
+  100% {
+    background: var(--bar-bg-color-3);
+  }
+}

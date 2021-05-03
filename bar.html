@@ -1,0 +1,34 @@
+<!-- All html objects will be wrapped in the #wrap div -->
+<div id="bar-content">
+    <div class="title title-standard"
+        :style="{ display: (layoutdata.detail.settings.layout === 'condensed' ? 'none' : 'block')}">
+        {{ layoutdata.detail.title }}
+    </div>
+    <div id="progress">
+        <div class="progress-box gradient-border">
+            <div class="progress-text">
+                <div id="title"><span
+                        :style="{ display: (layoutdata.detail.settings.layout === 'standard' ? 'none' : 'block')}">{{
+                        layoutdata.detail.title }}</span></div>
+                <div id="goal-current">
+                    {{ layoutdata.detail.amount.current }}
+                    <span v-if="layoutdata.detail.settings.custom_json.showCurrency.value === 'yes'">{{ layoutdata.detail.currency}}</span>
+                    <span v-if="layoutdata.detail.settings.layout === 'standard' || layoutdata.detail.settings.custom_json.showPercentage.value === 'yes'">({{ getPercent(layoutdata.detail.amount.current,layoutdata.detail.amount.target)}}%)</span>
+                </div>
+                <div id="goal-total">{{ layoutdata.detail.amount.target}}<span v-if="layoutdata.detail.settings.custom_json.showCurrency.value === 'yes'">{{ layoutdata.detail.currency }}</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="bar-footer" v-if="layoutdata.detail.settings.layout === 'standard'">
+        <div>
+            {{ layoutdata.detail.amount.start}}<span v-if="layoutdata.detail.settings.custom_json.showCurrency === 'yes'">{{ layoutdata.detail.currency }}</span>
+        </div>
+        <div>
+            {{ calculateDiffDays(layoutdata.detail.to_go.ends_at) }} Days to go
+        </div>
+        <div>
+            {{ layoutdata.detail.amount.target }}<span v-if="layoutdata.detail.settings.custom_json.showCurrency === 'yes'">{{ layoutdata.detail.currency }}</span>
+        </div>
+
+    </div>
+</div>
