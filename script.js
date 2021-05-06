@@ -9,7 +9,7 @@
 */
 
 // Example configuration
-var config = {
+const config = {
 
     detail: {
         title: 'Test',
@@ -125,7 +125,7 @@ document.addEventListener('goalLoad', function (obj) {
     /** @type baseConfig */
     const details = obj;
     console.log(obj.detail);
-    config = details;
+    Object.assign(config.detail, obj.detail);
     updateCssVars(obj);
 });
 
@@ -150,9 +150,11 @@ function getPercent(current, target) {
 function whenloadscript() {
     const app = new Vue({
         el: '#bar-content',
-        data: {
-            test: 'hola',
-            layoutdata: config
+        data() {
+            return {
+                test: 'hola',
+                layoutdata: config
+            }
         },
         methods: {
             getPercent: getPercent,
@@ -173,7 +175,7 @@ function whenloadscript() {
 
     document.addEventListener('goalEvent', function (obj) {
         // obj.detail will contain information about the goal
-        config = Object.assign(config, obj);
+        Object.assign(config.detail, obj.detail);
         console.log(app);
         updateCssVars(obj);
     });
